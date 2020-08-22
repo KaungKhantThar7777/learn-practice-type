@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import {
   StyledGame,
@@ -12,37 +12,69 @@ const Game = () => {
   const MAX_SECONDS = 5;
   const [ms, setMs] = useState(0);
   const [seconds, setSeconds] = useState(MAX_SECONDS);
+  const [currentCharacter, setCurrentCharacter] = useState("");
+  const [score, setScore] = useState(0);
 
   const history = useHistory();
+
+  const characters = "abcdefghijklmnopqrstuvwxyz123456789";
+
+  // effect for starting timer
   useEffect(() => {
+    setRandomCharacter();
     const startTime = new Date();
     const interval = setInterval(() => {
       updateTime(startTime);
     }, 1);
     return () => clearInterval(interval);
+    //eslint-disable-next-line
   }, []);
 
+  // effect for stoping timer
   useEffect(() => {
     if (seconds < 0) {
       history.push("/gameOver");
     }
   });
+
+  const keyupHandler = useCallback(
+    (e) => {
+      if (currentCharacter === e.key) {
+        setScore((score) => score + 1);
+      } else if (score > 0) {
+        setScore((score) => score - 1);
+      }
+      setRandomCharacter();
+    }, //eslint-disable-next-line
+    [currentCharacter]
+  );
+  //effect for registering eventListener
+  useEffect(() => {
+    document.addEventListener("keyup", keyupHandler);
+
+    return () => document.removeEventListener("keyup", keyupHandler);
+  }, [keyupHandler]);
+
+  const setRandomCharacter = () => {
+    const ran = Math.floor(Math.random() * characters.length);
+    setCurrentCharacter(characters[ran]);
+  };
+
   const updateTime = (startTime) => {
     const endTime = new Date();
 
     const passedMs = endTime.getTime() - startTime.getTime();
     setMs(1000 - (passedMs % 1000));
-    console.log(passedMs);
+
     const formatSeconds = Math.floor(seconds - passedMs / 1000);
     setSeconds(formatSeconds);
-    // console.log(formatSeconds);
   };
   return (
     <StyledGame>
       <StyledScore>
-        Score: <Strong>0</Strong>
+        Score: <Strong>{score}</Strong>
       </StyledScore>
-      <StyledCharacter>A</StyledCharacter>
+      <StyledCharacter>{currentCharacter}</StyledCharacter>
       <StyledTimer>
         Timer:{" "}
         <Strong>
