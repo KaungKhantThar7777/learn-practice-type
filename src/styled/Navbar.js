@@ -27,6 +27,7 @@ export const StyledNavList = styled.ul`
 export const StyledNavLink = styled(Link)`
   text-decoration: none;
   transition: color 200ms;
+  margin-right: 1rem;
   &:hover {
     color: #e16365;
   }

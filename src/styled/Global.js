@@ -8,4 +8,7 @@ export default createGlobalStyle`
         font-weight:300;
         color:#333;
     }
+    h1,h2{
+        margin-bottom:1rem;
+    }
 `;
