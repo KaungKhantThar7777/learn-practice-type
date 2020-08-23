@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import {
   StyledGame,
   StyledScore,
@@ -7,20 +6,20 @@ import {
   StyledTimer,
 } from "../styled/Game";
 import { Strong } from "../styled/Utils";
+import { useScore } from "../contexts/ScoreContext";
 
-const Game = () => {
+const Game = ({ history }) => {
   const MAX_SECONDS = 5;
   const [ms, setMs] = useState(0);
   const [seconds, setSeconds] = useState(MAX_SECONDS);
   const [currentCharacter, setCurrentCharacter] = useState("");
-  const [score, setScore] = useState(0);
-
-  const history = useHistory();
+  const [score, setScore] = useScore();
 
   const characters = "abcdefghijklmnopqrstuvwxyz123456789";
 
   // effect for starting timer
   useEffect(() => {
+    setScore(0);
     setRandomCharacter();
     const startTime = new Date();
     const interval = setInterval(() => {

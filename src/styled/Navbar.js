@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   display: grid;
@@ -21,12 +22,12 @@ export const StyledNavList = styled.ul`
   grid-gap: 20px;
   list-style: none;
   padding: 0;
-  a {
-    text-decoration: none;
-    transition: color 200ms;
-  }
+`;
 
-  a:hover {
+export const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  transition: color 200ms;
+  &:hover {
     color: #e16365;
   }
 `;

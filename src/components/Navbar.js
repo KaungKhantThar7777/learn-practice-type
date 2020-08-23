@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledNav, StyledNavBrand, StyledNavList } from "../styled/Navbar";
+import {
+  StyledNav,
+  StyledNavBrand,
+  StyledNavList,
+  StyledNavLink,
+} from "../styled/Navbar";
 import { Accent } from "../styled/Utils";
 
 const Navbar = () => {
@@ -13,10 +18,10 @@ const Navbar = () => {
       </StyledNavBrand>
       <StyledNavList>
         <li>
-          <Link to="/">Home</Link>
+          <StyledNavLink to="/">Home</StyledNavLink>
         </li>
         <li>
-          <Link to="/highScores">High Scores</Link>
+          <StyledNavLink to="/highScores">High Scores</StyledNavLink>
         </li>
       </StyledNavList>
     </StyledNav>
