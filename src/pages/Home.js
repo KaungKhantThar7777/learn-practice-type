@@ -2,7 +2,6 @@ import React from "react";
 
 import { CTA, StyledHome, StyledH1 } from "../styled/Home";
 import { Accent } from "../styled/Utils";
-
 const Home = () => {
   return (
     <StyledHome>

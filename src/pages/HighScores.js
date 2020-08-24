@@ -5,6 +5,7 @@ import {
   StyledScoresLi,
 } from "../styled/HighScores";
 import Spinner from "../components/Spinner";
+import { StyledH1 } from "../styled/Home";
 
 const HighScores = () => {
   const [highScores, setHighScores] = useState([]);
@@ -30,7 +31,7 @@ const HighScores = () => {
         <Spinner />
       ) : (
         <>
-          <h1>High Scores</h1>
+          <StyledH1>High Scores</StyledH1>
           <StyledScoresList>
             {highScores.map((score, index) => (
               <StyledScoresLi key={score.id}>

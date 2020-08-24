@@ -5,10 +5,14 @@ import {
   StyledNavBrand,
   StyledNavList,
   StyledNavLink,
+  StyledNavLi,
 } from "../styled/Navbar";
 import { Accent } from "../styled/Utils";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+  console.log(isAuthenticated, user);
   return (
     <StyledNav>
       <StyledNavBrand>
@@ -17,12 +21,20 @@ const Navbar = () => {
         </Link>
       </StyledNavBrand>
       <StyledNavList>
-        <li>
+        <StyledNavLi>
           <StyledNavLink to="/">Home</StyledNavLink>
-        </li>
-        <li>
+        </StyledNavLi>
+        <StyledNavLi>
           <StyledNavLink to="/highScores">High Scores</StyledNavLink>
-        </li>
+        </StyledNavLi>
+        {!isAuthenticated && (
+          <button onClick={() => loginWithRedirect()}>Login</button>
+        )}
+        {isAuthenticated && (
+          <button onClick={() => logout({ returnTo: window.location.origin })}>
+            Logout
+          </button>
+        )}
       </StyledNavList>
     </StyledNav>
   );

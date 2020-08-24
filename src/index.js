@@ -4,12 +4,20 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ScoreProvider } from "./contexts/ScoreContext";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ScoreProvider>
-      <App />
-    </ScoreProvider>
+    <Auth0Provider
+      domain="kkt.us.auth0.com"
+      clientId="NCstOIv7Qu0Uk0ptSEu7VZeJI3LzozCl"
+      redirectUri={window.location.origin}
+      audience="https://learnpracticetype"
+    >
+      <ScoreProvider>
+        <App />
+      </ScoreProvider>
+    </Auth0Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

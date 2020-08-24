@@ -24,7 +24,13 @@ export const StyledNavList = styled.ul`
   padding: 0;
 `;
 
+export const StyledNavLi = styled.li`
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledNavLink = styled(Link)`
+  text-align: center;
   text-decoration: none;
   transition: color 200ms;
   margin-right: 1rem;
