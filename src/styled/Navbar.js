@@ -35,6 +35,41 @@ export const StyledNavLink = styled(Link)`
   transition: color 200ms;
   margin-right: 1rem;
   &:hover {
-    color: #e16365;
+    color: var(--accent-color);
+  }
+`;
+
+export const StyledNavButton = styled.button`
+  font-size: 1rem;
+  padding: 0;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  transition: color 200ms;
+  margin-right: 1rem;
+  background-color: transparent;
+
+  &:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+  }
+`;
+
+export const StyledToggleBtn = styled.button`
+  font-size: 0.8rem;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  transition: color 200ms;
+  margin-right: 1rem;
+  background-color: var(--main-text-color);
+
+  color: var(--main-bg-color);
+
+  &:hover {
+    color: var(--accent-color);
+    cursor: pointer;
   }
 `;

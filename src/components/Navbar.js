@@ -6,13 +6,16 @@ import {
   StyledNavList,
   StyledNavLink,
   StyledNavLi,
+  StyledNavButton,
+  StyledToggleBtn,
 } from "../styled/Navbar";
 import { Accent } from "../styled/Utils";
 import { useAuth0 } from "@auth0/auth0-react";
+import { withTheme } from "styled-components";
 
-const Navbar = () => {
-  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
-  console.log(isAuthenticated, user);
+const Navbar = ({ toggleTheme }) => {
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+
   return (
     <StyledNav>
       <StyledNavBrand>
@@ -28,16 +31,28 @@ const Navbar = () => {
           <StyledNavLink to="/highScores">High Scores</StyledNavLink>
         </StyledNavLi>
         {!isAuthenticated && (
-          <button onClick={() => loginWithRedirect()}>Login</button>
+          <StyledNavLi>
+            <StyledNavButton onClick={() => loginWithRedirect()}>
+              Login
+            </StyledNavButton>
+          </StyledNavLi>
         )}
         {isAuthenticated && (
-          <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Logout
-          </button>
+          <StyledNavLi>
+            <StyledNavButton
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Logout
+            </StyledNavButton>
+          </StyledNavLi>
         )}
+
+        <StyledNavLi>
+          <StyledToggleBtn onClick={toggleTheme}>Toggle Theme</StyledToggleBtn>
+        </StyledNavLi>
       </StyledNavList>
     </StyledNav>
   );
 };
 
-export default Navbar;
+export default withTheme(Navbar);

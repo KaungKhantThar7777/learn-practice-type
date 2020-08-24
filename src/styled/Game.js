@@ -19,7 +19,7 @@ export const StyledCharacter = styled.p`
   grid-area: character;
   font-size: 15rem;
   text-align: center;
-  color: #e16365;
+  color: var(--accent-color);
 `;
 
 export const StyledTimer = styled.p`
