@@ -9,7 +9,7 @@ import { Strong } from "../styled/Utils";
 import { useScore } from "../contexts/ScoreContext";
 
 const Game = ({ history }) => {
-  const MAX_SECONDS = 60;
+  const MAX_SECONDS = 20;
   const [ms, setMs] = useState(0);
   const [seconds, setSeconds] = useState(MAX_SECONDS);
   const [currentCharacter, setCurrentCharacter] = useState("");
